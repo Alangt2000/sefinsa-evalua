@@ -809,8 +809,7 @@
                 </form>
 
                 <p class="seguridad">
-                    Acceso exclusivo para personal autorizado y candidatos
-                    registrados por SEFINSA.
+                    Acceso exclusivo para personal de SefinsaTest.com
                 </p>
 
             </div>
