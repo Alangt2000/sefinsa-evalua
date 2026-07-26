@@ -617,7 +617,7 @@
 
                             <div class="logo-marca">
                                 <img
-                                    src="{{ asset('images/marcas/lanamx.png') }}"
+                                    src="{{ asset('images/marcas/grusef.png') }}"
                                     alt="LanaMX"
                                 >
                             </div>
@@ -659,7 +659,7 @@
 
                             <div class="logo-marca">
                                 <img
-                                    src="{{ asset('images/marcas/lanamx.png') }}"
+                                    src="{{ asset('images/marcas/grusef.png') }}"
                                     alt=""
                                 >
                             </div>
