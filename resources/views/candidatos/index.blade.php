@@ -837,7 +837,7 @@
         <nav class="menu">
             <a href="{{ route('dashboard') }}">
                 <span class="menu-icono">⌂</span>
-                Dashboard
+                Inicio
             </a>
 
             <a href="{{ route('candidatos.index') }}" class="activo">
@@ -884,8 +884,7 @@
 
             <div class="acciones-superiores">
 
-                <a href="{{ route('dashboard') }}" class="boton-regresar">
-                    Dashboard
+                <a href="{{ route('dashboard') }}" class="boton-regresar"> Inicio
                 </a>
 
                 <form method="POST" action="{{ route('logout') }}">

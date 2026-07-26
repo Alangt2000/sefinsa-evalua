@@ -729,7 +729,7 @@
             <nav class="menu">
                 <a href="#" class="activo">
                     <span class="menu-icono">⌂</span>
-                    Dashboard
+                    Inicio
                 </a>
 
                 <a href="{{ route('candidatos.index') }}">
@@ -879,7 +879,7 @@
                                 <p>Últimos resultados registrados en el sistema.</p>
                             </div>
 
-                            <a href="#" class="ver-todos">
+                            <a href="https://sefinsatest.com/candidatos" class="ver-todos">
                                 Ver todos
                             </a>
 

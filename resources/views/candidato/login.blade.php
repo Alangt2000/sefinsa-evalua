@@ -2,6 +2,9 @@
 <html lang="es">
 
 <head>
+    <link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
     <meta charset="UTF-8">
 
     <meta name="viewport"
@@ -417,6 +420,45 @@
             box-shadow: 0 0 0 4px rgba(8, 60, 168, 0.10);
         }
 
+        .password-contenedor{
+    position:relative;
+}
+
+.password-contenedor input{
+    padding-right:55px;
+}
+
+.boton-ojo{
+    position:absolute;
+    top:50%;
+    right:12px;
+    transform:translateY(-50%);
+    width:38px;
+    height:38px;
+    border:none;
+    background:transparent;
+    color:#94a3b8;
+    cursor:pointer;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:18px;
+    border-radius:50%;
+    transition:.25s;
+}
+
+.boton-ojo:hover{
+    background:#edf3ff;
+    color:#083ca8;
+}
+
+.boton-ojo:focus{
+    outline:none;
+}
+
+
+
+
         .boton {
             width: 100%;
             margin-top: 7px;
@@ -785,25 +827,34 @@
 
                 <div class="campo">
 
-                    <label for="password">
-                        Contraseña
-                    </label>
+    <label for="password">
+        Contraseña
+    </label>
 
-                    <div class="entrada">
+    <div class="entrada password-contenedor">
 
-                        <span>🔑</span>
+        <span>🔑</span>
 
-                        <input
-                            id="password"
-                            name="password"
-                            type="password"
-                            autocomplete="current-password"
-                            required
-                        >
+        <input
+            id="password"
+            name="password"
+            type="password"
+            autocomplete="current-password"
+            required
+        >
 
-                    </div>
+ <button
+    type="button"
+    class="boton-ojo"
+    onclick="togglePassword()"
+    aria-label="Mostrar contraseña"
+>
+    <i class="fa-regular fa-eye"></i>
+</button>
 
-                </div>
+    </div>
+
+</div>
 
                 <button
                     type="submit"
@@ -829,5 +880,31 @@
 
 </div>
 
+<script>
+
+function togglePassword(){
+
+    const input = document.getElementById('password');
+    const icono = document.querySelector('.boton-ojo i');
+
+    if(input.type === "password"){
+
+        input.type = "text";
+
+        icono.classList.remove("fa-eye");
+        icono.classList.add("fa-eye-slash");
+
+    }else{
+
+        input.type = "password";
+
+        icono.classList.remove("fa-eye-slash");
+        icono.classList.add("fa-eye");
+
+    }
+
+}
+
+</script>
 </body>
 </html>
