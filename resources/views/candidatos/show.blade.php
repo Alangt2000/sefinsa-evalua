@@ -955,147 +955,161 @@
             </section>
 
             {{-- PSICOMÉTRICO --}}
-            <section class="resultado-card psicometrico">
+<section class="resultado-card psicometrico">
 
-                <div class="resultado-cabecera">
+    <div class="resultado-cabecera">
 
-                    <div class="resultado-identidad">
-                        <div class="resultado-icono">
-                            ◉
-                        </div>
+        <div class="resultado-identidad">
+            <div class="resultado-icono">
+                ◉
+            </div>
 
-                        <div>
-                            <h4>Examen psicométrico</h4>
-                            <p>Perfil y características laborales</p>
-                        </div>
-                    </div>
+            <div>
+                <h4>Examen psicométrico</h4>
+                <p>Perfil y características laborales</p>
+            </div>
+        </div>
 
-                    @if ($psicometricoFinalizado)
-                        <span class="insignia-evaluacion insignia-finalizada">
-                            Finalizado
-                        </span>
-                    @elseif (
-                        $evaluacionPsicometrica &&
-                        $evaluacionPsicometrica->estado === 'en_proceso'
-                    )
-                        <span class="insignia-evaluacion insignia-proceso">
-                            En proceso
-                        </span>
-                    @else
-                        <span class="insignia-evaluacion insignia-pendiente">
-                            Pendiente
-                        </span>
-                    @endif
+        @if ($psicometricoFinalizado)
+            <span class="insignia-evaluacion insignia-finalizada">
+                Finalizado
+            </span>
+        @elseif (
+            $evaluacionPsicometrica &&
+            $evaluacionPsicometrica->estado === 'en_proceso'
+        )
+            <span class="insignia-evaluacion insignia-proceso">
+                En proceso
+            </span>
+        @else
+            <span class="insignia-evaluacion insignia-pendiente">
+                Pendiente
+            </span>
+        @endif
 
+    </div>
+
+    <div class="resultado-cuerpo">
+
+        @if ($evaluacionPsicometrica)
+
+            <div class="calificacion-principal">
+
+                <div class="calificacion-superior">
+                    <span>Resultado obtenido</span>
+
+                    <strong>
+                        @if ($psicometricoFinalizado)
+                            {{
+                                number_format(
+                                    $calificacionPsicometrica,
+                                    1
+                                )
+                            }}%
+                        @else
+                            —
+                        @endif
+                    </strong>
                 </div>
 
-                <div class="resultado-cuerpo">
+                <div class="barra-resultado">
+                    <div
+                        class="barra-psicometrico"
+                        style="width: {{
+                            min(
+                                max($calificacionPsicometrica, 0),
+                                100
+                            )
+                        }}%;"
+                    ></div>
+                </div>
 
-                    @if ($evaluacionPsicometrica)
+                <p style="
+                    margin-top: 10px;
+                    color: #718096;
+                    font-size: 12px;
+                    line-height: 1.5;
+                ">
+                    Calificación calculada sobre 29 preguntas calificables.
+                    Las demás respuestas quedan disponibles para revisión de RH.
+                </p>
 
-                        <div class="calificacion-principal">
+            </div>
 
-                            <div class="calificacion-superior">
-                                <span>Resultado obtenido</span>
+            <div class="metricas-evaluacion">
 
-                                <strong>
-                                    @if ($psicometricoFinalizado)
-                                        {{
-                                            number_format(
-                                                $calificacionPsicometrica,
-                                                1
-                                            )
-                                        }}%
-                                    @else
-                                        —
-                                    @endif
-                                </strong>
-                            </div>
+                <div class="metrica">
+                    <span>Preguntas totales</span>
 
-                            <div class="barra-resultado">
-                                <div
-                                    class="barra-psicometrico"
-                                    style="width: {{
-                                        min(
-                                            max($calificacionPsicometrica, 0),
-                                            100
-                                        )
-                                    }}%;"
-                                ></div>
-                            </div>
+                    <strong>
+                        {{
+                            $evaluacionPsicometrica
+                                ->total_preguntas ?? 0
+                        }}
+                    </strong>
+                </div>
 
-                        </div>
+                <div class="metrica">
+                    <span>Respuestas correctas</span>
 
-                        <div class="metricas-evaluacion">
+                    <strong>
+                        {{
+                            $evaluacionPsicometrica
+                                ->respuestas_correctas ?? 0
+                        }}
+                    </strong>
+                </div>
 
-                            <div class="metrica">
-                                <span>Preguntas totales</span>
-                                <strong>
-                                    {{
-                                        $evaluacionPsicometrica
-                                            ->total_preguntas ?? 0
-                                    }}
-                                </strong>
-                            </div>
+                <div class="metrica">
+                    <span>Respuestas incorrectas</span>
 
-                            <div class="metrica">
-                                <span>Respuestas registradas</span>
-                                <strong>
-                                    {{
-                                        $evaluacionPsicometrica
-                                            ->respuestas
-                                            ->count()
-                                    }}
-                                </strong>
-                            </div>
+                    <strong>
+                        {{
+                            $evaluacionPsicometrica
+                                ->respuestas_incorrectas ?? 0
+                        }}
+                    </strong>
+                </div>
 
-                            <div class="metrica">
-                                <span>Sin contestar</span>
-                                <strong>
-                                    {{
-                                        $evaluacionPsicometrica
-                                            ->respuestas_sin_contestar ?? 0
-                                    }}
-                                </strong>
-                            </div>
+                <div class="metrica">
+                    <span>Sin contestar</span>
 
-                            <div class="metrica">
-                                <span>Duración</span>
-                                <strong>
-                                    {{
-                                        $formatearDuracion(
-                                            $evaluacionPsicometrica
-                                                ->duracion_segundos
-                                        )
-                                    }}
-                                </strong>
-                            </div>
+                    <strong>
+                        {{
+                            $evaluacionPsicometrica
+                                ->respuestas_sin_contestar ?? 0
+                        }}
+                    </strong>
+                </div>
 
-                            <div class="metrica">
-                                <span>Fecha de inicio</span>
-                                <strong>
-                                    {{
-                                        $evaluacionPsicometrica
-                                            ->fecha_inicio
-                                            ?->format('d/m/Y H:i')
-                                        ?? 'No iniciada'
-                                    }}
-                                </strong>
-                            </div>
+                <div class="metrica">
+                    <span>Duración</span>
 
-                            <div class="metrica">
-                                <span>Fecha de finalización</span>
-                                <strong>
-                                    {{
-                                        $evaluacionPsicometrica
-                                            ->fecha_finalizacion
-                                            ?->format('d/m/Y H:i')
-                                        ?? 'Pendiente'
-                                    }}
-                                </strong>
-                            </div>
+                    <strong>
+                        {{
+                            $formatearDuracion(
+                                $evaluacionPsicometrica
+                                    ->duracion_segundos
+                            )
+                        }}
+                    </strong>
+                </div>
 
-                        </div>
+                <div class="metrica">
+                    <span>Fecha de finalización</span>
+
+                    <strong>
+                        {{
+                            $evaluacionPsicometrica
+                                ->fecha_finalizacion
+                                ?->format('d/m/Y H:i')
+                            ?? 'Pendiente'
+                        }}
+                    </strong>
+                </div>
+
+            </div>
+
 
                     @else
 
